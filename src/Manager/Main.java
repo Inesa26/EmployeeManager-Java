@@ -1,5 +1,4 @@
 package Manager;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -12,7 +11,7 @@ public class Main {
         do{
             switch (Menu.basicMenu()) {
                 case 1:
-                    Inserts.insert(employees, employeeNumber);
+                    Insert.insert(employees, employeeNumber);
                     break;
                 case 2: if(EmptyArray.checkArray(employees)){
                     boolean correctNr;
@@ -20,10 +19,10 @@ public class Main {
                         correctNr = true;
                         switch (Menu.viewModel()) {
                             case 1:
-                                Searches.searchAll(employees);
+                                Search.searchAll(employees);
                                 break;
                             case 2:
-                                Searches.searchID(employees);
+                                Search.searchID(employees);
                                 break;
                             default:
                                 System.out.println("The field with selected number doesn't exist. Please try again.");
@@ -32,11 +31,11 @@ public class Main {
                     } while (!correctNr);} else System.out.println ("There are no employees for search.");
                     break;
 
-                case 3:  if(EmptyArray.checkArray(employees)) Editings.editData(employees);
+                case 3:  if(EmptyArray.checkArray(employees)) Edit.editData(employees);
                         else System.out.println ("There is no data for editing.");
                     break;
 
-                case 4: if(EmptyArray.checkArray(employees)) employees = Deletions.deleteEmployee(employees);
+                case 4: if(EmptyArray.checkArray(employees)) employees = Delete.deleteEmployee(employees);
                 else System.out.println ("There is no employee to delete.");
                     break;
                 case 5:

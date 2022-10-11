@@ -2,7 +2,7 @@ package Manager;
 
 import java.util.Scanner;
 
-public class Inserts {
+public class Insert {
     private static Scanner sc = new Scanner(System.in);
 
     public static void insert(Employee[] e, int nr) {

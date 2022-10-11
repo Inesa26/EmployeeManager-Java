@@ -2,10 +2,10 @@ package Manager;
 import java.util.Scanner;
 
 
-public class Editings {
+public class Edit {
     private static Scanner sc = new Scanner(System.in);
     public static void editData(Employee[] e)  {
-        int ID =  Searches.searchID(e);
+        int ID =  Search.searchID(e);
         boolean correctNr;
         do {
             correctNr = true;
@@ -31,7 +31,7 @@ public class Editings {
               } switch(Menu.continueDataEditing()){
                 case 1: correctNr = false; break;
 
-                case 2: Editings.editData(e);break;
+                case 2: Edit.editData(e);break;
                 case 3: correctNr = true;break;
                 default: System.out.println("The field with selected number doesn't exist. Please try again.");
                     Menu.continueDataEditing();

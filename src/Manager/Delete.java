@@ -3,10 +3,10 @@ package Manager;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Deletions  {
+public class Delete {
 
     public static Employee[] deleteEmployee(Employee[] e){
-        int ID =  Searches.searchID(e);
+        int ID =  Search.searchID(e);
 
         System.out.println("Are you sure you want to delete this employee?");
         switch (Menu.selectYesNo()) {

@@ -1,6 +1,6 @@
 package Manager;
 
-public class Views {
+public class View {
 
     public static void viewID(Employee[] e, int nr) {
         System.out.println("Employee [" + nr + "] " + e[nr - 1].getName() + " " + e[nr - 1].getSurname() + " - " + e[nr - 1].getGender());
