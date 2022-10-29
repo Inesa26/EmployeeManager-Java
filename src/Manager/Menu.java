@@ -41,7 +41,7 @@ public class Menu {
     }
 
     static int continueDataEditing() {
-        System.out.println("\t1. Modify the data of the present employee");
+        System.out.println("\n\t1. Modify the data of the present employee");
         System.out.println("\t2. Modify another employee's data");
         System.out.println("\t3. Return to the main menu");
         return sc.nextInt();
