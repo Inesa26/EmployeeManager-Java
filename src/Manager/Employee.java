@@ -1,24 +1,28 @@
 package Manager;
 
+import java.time.LocalDate;
+
 public class Employee {
 private int id;
 private  String name;
 private String surname;
 private String gender;
-
+private LocalDate birthdate;
     public Employee ()
     {  }
-  public Employee (String nam, String surn, String gen)
+  public Employee (String nam, String surn, String gen, LocalDate birthdate)
     {  this.name =nam;
        this.surname=surn;
        this.gender= gen;
+       this.birthdate=birthdate;
     }
 
-    public Employee (int id, String nam, String surn, String gen)
+    public Employee (int id, String nam, String surn, String gen, LocalDate birthdate)
     {   this.id=id;
         this.name =nam;
         this.surname=surn;
         this.gender= gen;
+        this.birthdate=birthdate;
     }
 
     public void setName(String value){
@@ -30,6 +34,7 @@ private String gender;
     public void setGender(String value){
         gender=value;
     }
+    public void setBirthdate(LocalDate value){birthdate=value;}
 
 
     public int getId(){
@@ -44,6 +49,7 @@ private String gender;
     public String getGender(){
         return this.gender;
     }
+    public LocalDate getBirthdate(){return this.birthdate;}
   }
 
 

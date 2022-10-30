@@ -37,6 +37,7 @@ public class Menu {
         System.out.println("\t1. Edit Employee's name");
         System.out.println("\t2. Edit Employee's surname");
         System.out.println("\t3. Edit Employee's gender");
+        System.out.println("\t4. Edit Employee's birthdate");
         return sc.nextInt();
     }
 

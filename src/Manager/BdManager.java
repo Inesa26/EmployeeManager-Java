@@ -1,6 +1,7 @@
 package Manager;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -22,13 +23,14 @@ public class BdManager {
 
 
         try{
-            String sql = "INSERT into employee(name, surname, gender) values(?,?,?)";
+            String sql = "INSERT into employee(name, surname, gender, birthdate) values(?,?,?,?)";
             Connection connection = getConnection();
             if(connection != null) {
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setString(1, emp.getName());
                 statement.setString(2, emp.getSurname());
                 statement.setString(3, emp.getGender());
+                statement.setDate(4, Date.valueOf(emp.getBirthdate()));
                 int rows = statement.executeUpdate();
             }
         } catch (SQLException ex) {
@@ -39,7 +41,7 @@ public class BdManager {
 
     public static List<Employee> selectAll(){
 
-        String sql = "Select id, name, surname, gender from employee";
+        String sql = "Select id, name, surname, gender, birthdate from employee";
         List<Employee> employees = new ArrayList<>();
         try{
             Connection connection = getConnection();
@@ -51,7 +53,8 @@ public class BdManager {
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
                 String gender = resultSet.getString("gender");
-                employees.add(new Employee(id, name, surname, gender));
+                LocalDate birthdate = resultSet.getDate("birthdate").toLocalDate();
+                employees.add(new Employee(id, name, surname, gender, birthdate));
             }
         }
         catch(SQLException ex){
@@ -64,7 +67,7 @@ public class BdManager {
         int ID;
         System.out.println ("Enter ID of the employee you are looking for: ");
         ID= sc.nextInt();
-        String sql = "Select id, name, surname, gender from employee where id="+ ID;
+        String sql = "Select id, name, surname, gender, birthdate from employee where id="+ ID;
         List<Employee> employees = new ArrayList<>();
         try{
             Connection connection = getConnection();
@@ -76,7 +79,8 @@ public class BdManager {
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
                 String gender = resultSet.getString("gender");
-                employees.add(new Employee(id, name, surname, gender));
+                LocalDate birthdate = resultSet.getDate("birthdate").toLocalDate();
+                employees.add(new Employee(id, name, surname, gender, birthdate));
         }
         catch(SQLException ex){
             System.out.println("Data cannot be displayed");
@@ -152,6 +156,22 @@ public class BdManager {
         }
     }
 
+    public static void editBirthdate (Employee emp){
+        try{
+            String sql = "UPDATE employee set birthdate=? where id=?";
+            Connection connection = getConnection();
+            if(connection != null) {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setDate(1, Date.valueOf(emp.getBirthdate()));
+                statement.setInt(2, emp.getId());
+                int rows = statement.executeUpdate();
+                System.out.print("Birthdate changed successfully!");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error! the birthdate has not been updated.");
+        }
+    }
+
     public static void deleteEmployee (Employee emp){
         try{
             String sql = "DELETE FROM employee where id=?";
@@ -166,5 +186,7 @@ public class BdManager {
             System.out.println("Error! The employee's data has not been deleted from the database.");
         }
     }
+
+
 }
 

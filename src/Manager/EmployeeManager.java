@@ -1,5 +1,7 @@
 package Manager;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,14 +18,16 @@ public class EmployeeManager {
             System.out.println("Select gender of the employee: ");
             String gender;
             if(Menu.selectGender() == 1) gender = "Male"; else gender = "Female";
-            e[i] = new Employee(name, surname, gender);
+            System.out.println("Enter date of birth in the format day/month/year (dd/mm/yyyy)");
+            LocalDate birthdate = LocalDate.parse(sc.nextLine(), DateTimeFormatter.ofPattern("dd/MM/y"));
+            e[i] = new Employee(name, surname, gender, birthdate);
             BdManager.create(e[i]);
         }
     }
 
     public static void viewAll(List<Employee> employees){
         for(Employee employee:employees){
-            System.out.println("Employee ["+ employee.getId()+"] "+ employee.getName() + " " + employee.getSurname()+ " - " + employee.getGender());
+            System.out.println("Employee ["+ employee.getId()+"] "+ employee.getName() + " " + employee.getSurname()+ " - " + employee.getGender() + " " + employee.getBirthdate());
         }
     }
 
@@ -49,6 +53,11 @@ public class EmployeeManager {
                         System.out.println ("Changing gender from " + e[0].getGender() + " to: " );
                         if(Menu.selectGender() == 1)  e[0].setGender("Male"); else e[0].setGender("Female") ;
                         BdManager.editGender(e[0]);
+                        break;
+                    case 4:
+                        System.out.println ("Enter date of birth in the format day/month/year (dd/mm/yyyy)\nChanging birthdate from " + e[0].getBirthdate() + " to: " );
+                        e[0].setBirthdate(LocalDate.parse(sc.nextLine(), DateTimeFormatter.ofPattern("dd/MM/y")) );
+                        BdManager.editBirthdate(e[0]);
                         break;
                     default:
                         System.out.println("The field with selected number doesn't exist. Please try again.");
