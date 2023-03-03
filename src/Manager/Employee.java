@@ -50,6 +50,12 @@ private LocalDate birthdate;
         return this.gender;
     }
     public LocalDate getBirthdate(){return this.birthdate;}
-  }
+
+    public String toString(){
+        return "Employee ["+ id +"] "+ name + " " + surname+ " - " + gender + " " + birthdate; }
+
+}
+
+
 
 
